@@ -21,7 +21,7 @@ const create_item = () => {
   item.id = "item-" + order;
   item.draggable = true;
   item.addEventListener("dragstart", (event) => {
-    event.dataTransfer.setData();
+    event.dataTransfer.setData("text", event.target.id);
   });
   item.addEventListener("dragend", (event) => {
     event.dataTransfer.clearData();
@@ -49,10 +49,10 @@ document.querySelectorAll('.drop').forEach(element => {
   element.addEventListener("drop", (event) => {
     event.preventDefault();
     const id = event.dataTransfer.getData("text");
-    event.target = document.getElementById(id);
+    event.target.append(document.getElementById(id));
   });
   element.addEventListener("dragover", (event) => {
     event.preventDefault();
-    
+
   })
 });
